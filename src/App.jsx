@@ -4,12 +4,12 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 // Configuración de Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyBKJ2lTogRyuKLM9HD5YwGqTaXSu_7AzTs",
-  authDomain: "base-34631.firebaseapp.com",
-  projectId: "base-34631",
-  storageBucket: "base-34631.firebasestorage.app",
-  messagingSenderId: "51947527201",
-  appId: "1:51947527201:web:6502d9498a58660f129760",
+    apiKey: "AIzaSyBKJ2lTogRyuKLM9HD5YwGqTaXSu_7AzTs",
+    authDomain: "base-34631.firebaseapp.com",
+    projectId: "base-34631",
+    storageBucket: "base-34631.firebasestorage.app",
+    messagingSenderId: "51947527201",
+    appId: "1:51947527201:web:6502d9498a58660f129760"
 };
 
 // Inicializar Firebase
@@ -55,26 +55,83 @@ const App = () => {
     setResultado(null);
   };
 
+  // Estilos en línea
+  const estilos = {
+    body: {
+       backgroundImage: "url(''),
+       backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      minHeight: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "cover",
+      margin: 500,
+    },
+    container: {
+      backgroundColor: "rgba(255, 255, 255, 0.9)",
+      borderRadius: "16px",
+      padding: "2rem",
+      maxWidth: "500px",
+      width: "100%",
+      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    },
+    title: {
+      fontSize: "2rem",
+      color: "#333",
+      textAlign: "center",
+      marginBottom: "1rem",
+    },
+    input: {
+      width: "100%",
+      padding: "0.75rem",
+      marginBottom: "1rem",
+      border: "1px solid #ccc",
+      borderRadius: "8px",
+      fontSize: "1rem",
+    },
+    button: {
+      width: "100%",
+      padding: "0.75rem",
+      marginBottom: "1rem",
+      border: "none",
+      borderRadius: "8px",
+      fontSize: "1rem",
+      cursor: "pointer",
+    },
+    calcularButton: {
+      backgroundColor: "#007BFF",
+      color: "#fff",
+    },
+    limpiarButton: {
+      backgroundColor: "#6c757d",
+      color: "#fff",
+    },
+    resultado: {
+      marginTop: "1rem",
+      backgroundColor: "#d4edda",
+      color: "#155724",
+      padding: "1rem",
+      borderRadius: "8px",
+      textAlign: "center",
+    },
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="bg-white p-6 rounded-2xl shadow-lg max-w-md w-full">
-        <h1 className="text-2xl font-bold mb-4 text-center">
-          Calculadora de Comida para Pollos
-        </h1>
+    <div style={estilos.body}>
+      <div style={estilos.container}>
+        <h1 style={estilos.title}>Calculadora de Comida para Pollos</h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             calcularComida();
           }}
-          className="space-y-4"
         >
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Número de pollos
-            </label>
+            <label>Número de pollos</label>
             <input
               type="number"
-              className="mt-1 p-2 w-full border rounded-lg"
+              style={estilos.input}
               value={numPollos}
               onChange={(e) => setNumPollos(e.target.value)}
               placeholder="Ingresa el número de pollos"
@@ -84,11 +141,9 @@ const App = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Tipo de alimento
-            </label>
+            <label>Tipo de alimento</label>
             <select
-              className="mt-1 p-2 w-full border rounded-lg"
+              style={estilos.input}
               value={tipoAlimento}
               onChange={(e) => setTipoAlimento(e.target.value)}
             >
@@ -98,12 +153,10 @@ const App = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Duración (días)
-            </label>
+            <label>Duración (días)</label>
             <input
               type="number"
-              className="mt-1 p-2 w-full border rounded-lg"
+              style={estilos.input}
               value={dias}
               onChange={(e) => setDias(e.target.value)}
               placeholder="Ingresa la cantidad de días"
@@ -114,21 +167,21 @@ const App = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+            style={{ ...estilos.button, ...estilos.calcularButton }}
           >
             Calcular
           </button>
           <button
             type="button"
             onClick={limpiarCampos}
-            className="w-full bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400 mt-2"
+            style={{ ...estilos.button, ...estilos.limpiarButton }}
           >
             Limpiar
           </button>
         </form>
 
         {resultado && (
-          <div className="mt-4 p-4 bg-green-100 text-green-800 rounded-lg text-center">
+          <div style={estilos.resultado}>
             <p>
               Total de comida necesaria: <strong>{resultado} kg</strong>
             </p>
